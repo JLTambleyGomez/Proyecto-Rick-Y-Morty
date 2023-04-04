@@ -1,0 +1,17 @@
+.cardscontainer{
+      display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    width: auto;
+    margin: auto;
+    margin-top: 20px;
+    background-image: url('./img/cardsbackground.png');
+    background-repeat:initial;
+    background-size:automatic;
+    padding:1em;
+    border: 10px solid;
+    border-color: rgba(12, 2, 2, 0.377);
+    z-index:1;
+}
