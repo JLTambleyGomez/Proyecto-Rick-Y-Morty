@@ -6,6 +6,7 @@ const Cards = ({ characters,onClose }) => {
      <div className={style.cardscontainer}>
        {characters.map((character) => (
          <Card
+           id={character.id}
            key={character.ID}
            name={character.name}
            status={character.status}

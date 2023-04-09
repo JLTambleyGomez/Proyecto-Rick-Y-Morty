@@ -1,6 +1,6 @@
 .navbar{
     background-color: black;
-    padding: 2em;
+    padding: 0.1em;
     display: flex;
     flex-direction: row;
     justify-content: end;

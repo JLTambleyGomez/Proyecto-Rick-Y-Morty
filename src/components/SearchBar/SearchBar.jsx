@@ -1,17 +1,27 @@
+import { useState } from 'react';
 import style from './Search.module.css';
 
+import { NavLink,Outlet } from "react-router-dom";
+
+
 export default function SearchBar({ onSearch }) {
+const[id, setId]=useState("");
+const handleChange = (event) => {
+setId(event.target.value)
+}
+
+
   return (
     <div className={style.bar}>
-    <input type="search" className={style.searchinput} />
+    <h1
+    className={style.searchmenu1}>Welcome to the Rick and Morty Card Search! Please enter a number and click "Add" to begin.</h1>
+
+
+    <input type="search" onChange={handleChange} value={id} className={style.searchinput} />
     <button 
     className={style.searchbutton}
-      onClick={(id)=>{
-      onSearch(id);
-    }}
-    >
-  Agregar 
-</button> 
+     onClick={()=> {onSearch(id) ;setId("") }}>Agregar </button> 
+
 </div>
 );
   }
