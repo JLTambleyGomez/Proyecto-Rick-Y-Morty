@@ -1,18 +1,18 @@
-.link {
-  color: rgb(252, 255, 69);
-  text-decoration:dotted;
-}
 
 .container {
-  transform: scale(0.72);
-  margin-top: -49px;
+  display: auto;
+  flex: auto;
+  padding: auto;
+  margin-top:200px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   background:black;
   color:#FFF;
   font-size: 20px;
   font-weight: bold;
+  position:relative;
+  border-radius: auto;
   z-index:1;
-  border: 7px solid rgb(27, 79, 88);
-
 }
 
 .container::before {
@@ -24,6 +24,7 @@
   height:100%;
   background: linear-gradient( 45deg, rgb(7, 87, 33),rgb(5, 5, 88),rgb(19, 94, 59),rgb(28, 28, 126),rgb(104, 18, 18),rgb(16, 16, 105),rgb(107, 54, 19),rgb(18, 18, 138));
   background-size: 800%;
+  border-radius:20px;
   filter:blur(1px);
   animation:glowing 30s linear infinite;
   z-index:-1;
@@ -44,8 +45,12 @@
 .closebutton {
   cursor:pointer;
   color: aliceblue;
+  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-right: 6px;
   background-color: rgb(2, 19, 19);
   width: fit-content;
+  padding: 0.6em;
   border-radius: 50%;
   animation: pulse 1.5s ease-in-out infinite;
   position: absolute;
@@ -85,25 +90,3 @@
 
 
 
- .favbutton {
-  position:absolute;
-  top:0;
-  margin: 0;
-  font-size: 44px;
-  line-height: 1;
-  background-color: rgb(0, 0, 0);
- color: #fff;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  top: 40%;
-  right:42%;
-}
-
-.favbutton:hover {
-  color: #ffbc42;
-}
-
-.favbutton:active {
-  background-color: #fff;
-  transform: scale(1.6);
-}

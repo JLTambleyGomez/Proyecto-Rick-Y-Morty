@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import style from "./Card.module.css";
+
 const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
-const API_KEY = '921c53ed19ee.c07a3c34e20b05d4765f';
+const API_KEY = '655126203f53.a13a286bc0c531bac065';
 
 
 const Detail = ()=>{
 const {id} = useParams ();
 const [character, setCharacter] = useState({});
+
 useEffect(() => {
+    console.log("peticion");
     axios(`${URL_BASE}/${id}?key=${API_KEY}`)
       .then(response => response.data)
       .then((data) => {
@@ -23,7 +27,8 @@ useEffect(() => {
   
 
  return (
-    <div>
+    <div className={style.container}>
+
     <h2>{character?.name}</h2>
     <h2>{character?.status}</h2>
     <h2>{character?.species}</h2>

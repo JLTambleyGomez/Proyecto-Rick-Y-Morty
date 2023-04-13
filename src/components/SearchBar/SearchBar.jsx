@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import style from './Search.module.css';
 
-import { NavLink,Outlet } from "react-router-dom";
-
-
 export default function SearchBar({ onSearch }) {
 const[id, setId]=useState("");
 const handleChange = (event) => {

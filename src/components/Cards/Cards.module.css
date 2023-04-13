@@ -1,16 +1,10 @@
 .cardscontainer{
-      display: flex;
-    flex-direction:inherit;
-    flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    width:fit-content;
-    margin: auto;
-    margin-top: 20px;
+    width:100%;
     background-image: url('./img/cardsbackground.png');
     background-repeat:initial;
-    background-size:automatic;
-    padding: 1%;
-    border: 10px solid;
+    background-size:contain;
     border-color: rgba(12, 2, 2, 0.377);
-    z-index:1;
 }

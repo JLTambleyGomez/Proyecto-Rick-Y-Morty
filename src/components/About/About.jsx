@@ -1,7 +1,12 @@
 const About = ()=>{
 return(
     <div>
-        <p>My name is Jorge Tambley, and I'm a passionate Full Stack Developer.
+
+        <p>
+            <h1> 
+                About Me
+            </h1>
+         My name is Jorge Tambley, and I'm a passionate Full Stack Developer.
          I'm currently studying a range of web development technologies, including
           JavaScript, React, HTML, and CSS. From a young age, I've always been interested
            in technology and its ability to solve complex problems. As I continued to 
