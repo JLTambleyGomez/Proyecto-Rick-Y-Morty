@@ -19,7 +19,7 @@ ReactDOM.render(
 // importa import {BrowserRouter} from 'react-router-dom';
 // y luego envolvemos app para ocupar rutas 
 //
-//$ npx create-react-app routing
-//$ npm i react-router-dom@6.3.0
-//$ npm i redux@4.0.5 react-redux redux-thunk
-// npm start 
+  //$ npx create-react-app routing
+  //$ npm i react-router-dom@6.3.0
+  //$ npm i redux@4.0.5 react-redux redux-thunk
+  // npm start  
