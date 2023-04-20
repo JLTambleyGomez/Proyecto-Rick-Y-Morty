@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import style from "./Card.module.css";
 
-const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
-const API_KEY = '655126203f53.a13a286bc0c531bac065';
+// const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
+// const API_KEY = '655126203f53.a13a286bc0c531bac065';
 
 
 const Detail = ()=>{
@@ -13,7 +13,7 @@ const [character, setCharacter] = useState({});
 
 useEffect(() => {
     console.log("peticion");
-    axios(`${URL_BASE}/${id}?key=${API_KEY}`)
+    axios(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(response => response.data)
       .then((data) => {
         if (data.name) {

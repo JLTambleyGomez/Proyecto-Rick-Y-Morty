@@ -27,17 +27,23 @@ function App() {
     const password= "koke122";
 
    //! EVENTHANDLERS
-   const onSearch=(id)=> {
-      axios(`https://rickandmortyapi.com/api/character/${id}`)
-      .then(response => response.data)
-      .then((data) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            alert('¡No hay personajes con este ID!');
-         }
-      });
-   }
+   const onSearch = (id) => {
+      axios(`http://localhost:3001/rickandmorty/character/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.data;
+          } else {
+            throw new Error('¡No hay personajes con este ID!');
+          }
+        })
+        .then((data) => {
+          setCharacters((oldChars) => [...oldChars, data]);
+        })
+        .catch(error => {
+          alert('¡No hay personajes con este ID!');
+        });
+    }
+    
    let onClose = (id) => {
       const characterfiltered= characters.filter(characters=>
       characters.id !==Number(id))
