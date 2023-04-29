@@ -7,12 +7,12 @@ const Forms=({login}) =>{
 const [passwordVisible, setPasswordVisible] = useState(false);
 
 const [userData, setUserData]=useState({
-    username:"",
+    email:"",
     password:"",
 })
 
 const [errors, setErrors] = useState({
-  username:"",
+  email:"",
   password:"",
 })
 
@@ -31,10 +31,10 @@ const handleOnSubmit = (event) =>{
 return (
     <form  onSubmit={handleOnSubmit} className={styles.form}>
     <h1f className={styles.title}>Welcome to Rick And Morty App</h1f>
-    <labelf className={styles.label} htmlFor="username">Email </labelf>
+    <labelf className={styles.label} htmlFor="email">Email </labelf>
 
     <input className={styles.input}
-     name="username" 
+     name="email" 
      type="email" 
      placeholder="Ingresa Email"
       value={userData.username} 
@@ -51,12 +51,12 @@ return (
       onChange={handleOnchange}/>
       </div>
 
-    <buttonf className={styles['show-password']} onClick={() => setPasswordVisible(!passwordVisible)}>
+    <button className={styles['show-password']} onClick={() => setPasswordVisible(!passwordVisible)}>
         {passwordVisible ? "Hide-Password" : "Show-Password"}
-      </buttonf>
+      </button>
     {errors.password&&  <p className={styles.error}>{errors.password}</p>}
     <pf className={styles.recommendation}>We recommend using a password that includes a combination of uppercase and lowercase letters, numbers, and special characters for added security.  </pf>
-    <button className={styles['buttonf']} disabled={!userData.username||!userData.password||errors.username||errors.password}>Submit</button>
+    <button className={styles['buttonf']} >Submit</button>
     <hr /> </form>
     )
 }

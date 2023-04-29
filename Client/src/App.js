@@ -8,60 +8,66 @@ import { useLocation, useNavigate} from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import  axios  from 'axios';
 import {Routes,Route } from 'react-router-dom'; //necesario para usar el route
-import Forms from './components/Forms/forms';
+import Forms from './components/Forms/Forms';
 import Favorites from './components/favorites/favorites';
+
+  // //  //Credenciales Fake
+  //   const email= "britezmicaela2@gmail.com";
+  //    const password= "MIIIK07";
 
 function App() {
    //!HOOKS
-   let [characters, setCharacters]=useState([]);
-   const {pathname}=useLocation();
-   const [access, setAccess]= useState(false);
+   const location =useLocation();
    const navigate = useNavigate();
+   let [characters, setCharacters]=useState([]);
+   const [access, setAccess]= useState(false);
+   const URL = 'http://localhost:3001/rickandmorty/login/'; //esta es la ruta (url) de nuestro back
 
-   useEffect(()=>{
-      !access && navigate("/");
-   },[access]);
-
-   //Credenciales Fake
-    const username= "jorge@gmail.com";
-    const password= "koke122";
+   const login = async (userData) => {   
+    try {        
+         const { email, password } = userData;
+         const {data} = await axios(URL + `?email=${email}&password=${password}`)
+         const { access } = data;
+         
+         setAccess(access);
+         access && navigate('/home');
+  
+    } catch (error) {
+      console.log (error.message);
+    }  
+   } 
+   useEffect(() => {
+    if (!access) {
+      navigate('/');
+    }
+  }, [access, navigate]);
+  
 
    //! EVENTHANDLERS
-   const onSearch = (id) => {
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.data;
-          } else {
-            throw new Error('¡No hay personajes con este ID!');
-          }
-        })
-        .then((data) => {
+   const onSearch = async (id) => {
+    try {
+      const {data} = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+      if (data.name) {
           setCharacters((oldChars) => [...oldChars, data]);
-        })
-        .catch(error => {
-          alert('¡No hay personajes con este ID!');
-        });
-    }
-    
+   };
+
+    } catch (error) {
+   alert('¡No hay personajes con este ID!');
+  }
+};
    let onClose = (id) => {
       const characterfiltered= characters.filter(characters=>
       characters.id !==Number(id))
       setCharacters(characterfiltered)}
       
-   const login = (userData)=>{
-      if (userData.username===username && userData.password===password){
-         setAccess(true);
-         navigate("/home");
-      }
-   }; 
+   
 
    return (
       <div className='App' style = {{padding: "26px",}}>
       <div className={style.navbar}>
      </div> 
      
-      {pathname!=="/" && <Nav onSearch={onSearch} access={access} setAccess={setAccess}/>}
+      {location!=="/" && <Nav onSearch={onSearch} access={access} setAccess={setAccess}/>}
       <Routes>
       <Route path = "/" element={<Forms login= {login}/>}/>
       <Route path='/home' element ={ <Cards characters={characters} 

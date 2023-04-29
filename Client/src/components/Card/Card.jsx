@@ -1,22 +1,22 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { addFavorite, removeFavorite } from "../../Redux/action";
+import { addFav, removeFav } from "../../Redux/action";
 import { useState } from "react";
 import { useEffect } from "react";
 
 
-const Card=({id, name, status, species, gender, origin, image, onClose,addFavorite,removeFavorite,myFavorites })=>{
+const Card=({id, name, status, species, gender, origin, image, onClose,addFav,removeFav,myFavorites })=>{
 const [isFavorite,setIsFavorite]=useState(false);
 
 const handleFavorites = () => {
   if (isFavorite) {
     setIsFavorite(false);
-    removeFavorite(id);
+    removeFav(id);
   } else {
     if (!isFavorite) {
       setIsFavorite(true);
-      addFavorite({
+      addFav({
         id,
         name,
         status,
@@ -39,10 +39,12 @@ useEffect(() =>{
 }, [myFavorites]);
 
 
+
     return (
       <div className={style.container}>
      
          <img src={image} alt='' />
+
 
       {isFavorite ? (
             <button  onClick={handleFavorites}class={style.favbutton}>✪</button>
@@ -56,16 +58,16 @@ useEffect(() =>{
          <h2>Species: {species}</h2>
          <h2>Gender: {gender}</h2>
          <h2>Origin: {origin.name}</h2>
-         <button onClick={()=>onClose(id)} class={style.closebutton}>X</button>
+         <button onClick={() => onClose(id)} className={style.closebutton}>X</button>
 
       </div>
    );
 }
 const mapDispatchToProps = (dispatch)=>{
 return {
-   addFavorite: (character)=>{ dispatch(addFavorite(character))
+   addFav: (character)=>{ dispatch(addFav(character))
    },
-   removeFavorite: (id) => { dispatch(removeFavorite(id));
+   removeFav: (id) => { dispatch(removeFav(id));
    },
  };
 };
