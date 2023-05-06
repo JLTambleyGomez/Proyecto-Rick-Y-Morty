@@ -1,22 +1,26 @@
+const {User} = require('../Db_connection');
 
-const users = require('../utils/users');
-
-const login = (req,res) =>{
- const {email,password} =req.query;
-
-
- const userFound =users.find ((user)=> user.email === email && user.password === password)
-
-//return userFound
-//  ?res.status(200)json ({ access:true0})
-//  :res.status(404).json({ access: false})
-if (userFound) return res.status(200).json({access:true}); // si userFound es true se retora access:true (se retorna 202)
-return res.status(404).json({access:false});//de lo contrario (evitar poner else, asique se hace esta forma) se retorna error 404
-
-}
-
-
-
-module.exports={
-    login
-}
+const login = async (req, res) => {
+    const { email, password } = req.query;
+  
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Faltan datos' });
+    }
+  
+    try {
+      const user = await User.findOne({ where: { email } });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+        if (user.password !== password) {
+        return res.status(403).json({ message: 'Contraseña incorrecta' });
+      }
+        return res.json({ access: true });
+  
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
+  
+  module.exports = { login };

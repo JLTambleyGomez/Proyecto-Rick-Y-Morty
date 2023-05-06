@@ -1,8 +1,10 @@
+    
 
-
-const { getChardById } = require("../controllers/getCharById")
-const  {postFav,deleteFav} = require("../controllers/handleFavorites" )
+const { getChardById } = require("../controllers/getCharById");
+const  {postFav} = require("../controllers/postFav" );
+const  {deleteFav} = require("../controllers/deleteFav" );
 const { login } = require( "../controllers/login")
+const {PostUser} =require("../controllers/postUser");
 const router = require ('express').Router();
 
 router.get('/character/:id' , (req,res)=> { //otra forma de hacer estas lineas es la siguiente :
@@ -10,6 +12,10 @@ router.get('/character/:id' , (req,res)=> { //otra forma de hacer estas lineas e
 
 })
 router.get("/login",login);
+
+router.post("/login" , (req,res)=>{
+    PostUser (req,res);
+    })
 
 router.post("/fav" , (req,res)=>{
 postFav (req,res);
